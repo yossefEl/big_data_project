@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import lxml
 import csv
-import flipkart_scraper as fs
+from data_scrapers import flipkart_scraper as fs
 
-fs.scrape('sex',limit)
+fs.scrape('sex',)
 
