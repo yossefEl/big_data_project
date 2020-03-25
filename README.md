@@ -2,5 +2,8 @@
 - [x] Scrapers
 - [ ] Classifiers
 - [ ] Manager
+
+- [x] SlideShow
+- [ ] Report
     
     
