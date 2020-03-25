@@ -8,7 +8,7 @@ import sys
 
 def scrape(keyword,filename='data',limit=None):
     print(keyword)
-    with open('data.csv', mode='w') as csv_file:
+    with open(filename+'.csv', mode='w') as csv_file:
         fieldnames = ['productName', 'priceInDollar', 'rating', 'numberOfRates']
         writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
         writer.writeheader()
@@ -57,7 +57,7 @@ def scrape(keyword,filename='data',limit=None):
                     ratersNB = 0
                     rating = 0
 
-                with open('data.csv', mode='a') as csv_file:
+                with open(filename+'.csv', mode='a') as csv_file:
                     fieldnames = [
                         'productName', 'priceInDollar', 'rating', 'numberOfRates'
                     ]
@@ -85,7 +85,7 @@ def scrape(keyword,filename='data',limit=None):
                     ratersNB = 0
                     rating = 0
 
-                with open('data.csv', mode='a') as csv_file:
+                with open(filename+'.csv', mode='a') as csv_file:
                     fieldnames = [
                         'productName', 'priceInDollar', 'rating', 'numberOfRates'
                     ]
