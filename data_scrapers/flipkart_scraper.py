@@ -6,7 +6,7 @@ import sys
 
 
 
-def scrape(keyword):
+def scrape(keyword,filename='data',limit=None):
     print(keyword)
     with open('data.csv', mode='w') as csv_file:
         fieldnames = ['productName', 'priceInDollar', 'rating', 'numberOfRates']
@@ -43,29 +43,58 @@ def scrape(keyword):
         prices = soup.find_all("div", class_="_1vC4OE")
 
         print(len(numberRaters))
-        for index in range(len(titles)):
-            title = titles[index]['title'].strip('\"')
-            price = round(
-                float(prices[index].text.replace('₹', '').replace(',', '')) /
-                76.27, 2)
-            if index < len(numberRaters):
-                ratersNB = numberRaters[index].text.replace('(', '').replace(
-                    ')', '')
-                rating = ratings[index].text
-            else:
-                ratersNB = 0
-                rating = 0
+        if limit is not None and limit<=len(titles):
+            for index in range(limit):
+                title = titles[index]['title'].strip('\"')
+                price = round(
+                    float(prices[index].text.replace('₹', '').replace(',', '')) /
+                    76.27, 2)
+                if index < len(numberRaters):
+                    ratersNB = numberRaters[index].text.replace('(', '').replace(
+                        ')', '')
+                    rating = ratings[index].text
+                else:
+                    ratersNB = 0
+                    rating = 0
 
-            with open('data.csv', mode='a') as csv_file:
-                fieldnames = [
-                    'productName', 'priceInDollar', 'rating', 'numberOfRates'
-                ]
-                writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
-                writer.writerow({
-                    'productName': title,
-                    'priceInDollar': price,
-                    'rating': rating,
-                    'numberOfRates': ratersNB
-                })
+                with open('data.csv', mode='a') as csv_file:
+                    fieldnames = [
+                        'productName', 'priceInDollar', 'rating', 'numberOfRates'
+                    ]
+                    writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+                    writer.writerow({
+                        'productName': title,
+                        'priceInDollar': price,
+                        'rating': rating,
+                        'numberOfRates': ratersNB
+                    })
 
-                # writerow= csv.writer(csv_file)
+                    # writerow= csv.writer(csv_file)
+
+        else:
+            for index in range(len(titles)):
+                title = titles[index]['title'].strip('\"')
+                price = round(
+                    float(prices[index].text.replace('₹', '').replace(',', '')) /
+                    76.27, 2)
+                if index < len(numberRaters):
+                    ratersNB = numberRaters[index].text.replace('(', '').replace(
+                        ')', '')
+                    rating = ratings[index].text
+                else:
+                    ratersNB = 0
+                    rating = 0
+
+                with open('data.csv', mode='a') as csv_file:
+                    fieldnames = [
+                        'productName', 'priceInDollar', 'rating', 'numberOfRates'
+                    ]
+                    writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+                    writer.writerow({
+                        'productName': title,
+                        'priceInDollar': price,
+                        'rating': rating,
+                        'numberOfRates': ratersNB
+                    })
+
+                    # writerow= csv.writer(csv_file)
