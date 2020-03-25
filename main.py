@@ -24,7 +24,7 @@ elif len(argv)==3 and argv[1]=='-s':
     else:
         keyword=argv[2]
         os.chdir(cwd+'/data_scrapers/scraping_ebay')
-        os.system('scrapy crawl ebay -o '+cwd+'/'+output+'.csv -a search="'+keyword+'"')
+        os.system('scrapy crawl ebay -o '+cwd+'/'+output+'_ebay.csv -a search="'+keyword+'"')
         os.chdir(cwd)
         fs.scrape(keyword=keyword,filename='data')
         
@@ -42,7 +42,7 @@ elif len(argv)==5:
             print(keyword)
             #start scraping 
             os.chdir(cwd+'/data_scrapers/scraping_ebay')
-            os.system('scrapy crawl ebay -o '+cwd+'/'+output+'.csv -a search="'+keyword+'"')
+            os.system('scrapy crawl ebay -o '+cwd+'/'+output+'_ebay.csv -a search="'+keyword+'"')
             os.chdir(cwd)
             fs.scrape(keyword=keyword,filename=output)
             
@@ -53,7 +53,7 @@ elif len(argv)==5:
             #start scraping 
             print(os.getcwd())
             os.chdir(cwd+'/data_scrapers/scraping_ebay')
-            os.system('scrapy crawl ebay -o '+cwd+'/'+output+'.csv -a search="'+keyword+'"')
+            os.system('scrapy crawl ebay -o '+cwd+'/'+output+'_ebay.csv -a search="'+keyword+'"')
             os.chdir(cwd)
             fs.scrape(keyword=keyword,filename=output)
             
@@ -75,7 +75,7 @@ elif len(argv)==7:
             print(output)
             print(keyword)
             os.chdir(cwd+'/data_scrapers/scraping_ebay')
-            os.system('scrapy crawl ebay -o '+cwd+'/'+output+'.csv -a search="'+keyword+'"')
+            os.system('scrapy crawl ebay -o '+cwd+'/'+output+'_ebay.csv -a search="'+keyword+'"')
             os.chdir(cwd)
             fs.scrape(keyword=keyword,filename=output,limit=limit)
             

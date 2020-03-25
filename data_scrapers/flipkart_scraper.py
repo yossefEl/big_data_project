@@ -7,9 +7,10 @@ import sys
 
 
 def scrape(keyword,filename='data',limit=None):
+    filename=filename+'_flipkart'
     print(keyword)
     with open(filename+'.csv', mode='w') as csv_file:
-        fieldnames = ['productName', 'priceInDollar', 'rating', 'numberOfRates']
+        fieldnames = ['productName', 'priceInDollar', 'rating', 'numberOfRates','Link']
         writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
         writer.writeheader()
     url = 'https://www.flipkart.com/search?q=' + keyword.replace(
@@ -41,6 +42,7 @@ def scrape(keyword,filename='data',limit=None):
         ratings = soup.find_all("div", class_="hGSR34")
         numberRaters = soup.find_all('span', class_='_38sUEc')
         prices = soup.find_all("div", class_="_1vC4OE")
+        links= soup.find_all('a',href=True,class_='Zhf2z-')
 
         print(len(numberRaters))
         if limit is not None and limit<=len(titles):
@@ -59,20 +61,22 @@ def scrape(keyword,filename='data',limit=None):
 
                 with open(filename+'.csv', mode='a') as csv_file:
                     fieldnames = [
-                        'productName', 'priceInDollar', 'rating', 'numberOfRates'
+                        'productName', 'priceInDollar', 'rating', 'numberOfRates','Link'
                     ]
                     writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
                     writer.writerow({
                         'productName': title,
                         'priceInDollar': price,
                         'rating': rating,
-                        'numberOfRates': ratersNB
+                        'numberOfRates': ratersNB,
+                        'Link':'https://www.flipkart.com'+links[index]['href']
                     })
 
                     # writerow= csv.writer(csv_file)
 
         else:
             for index in range(len(titles)):
+                print(links[index]['href'])
                 title = titles[index]['title'].strip('\"')
                 price = round(
                     float(prices[index].text.replace('₹', '').replace(',', '')) /
@@ -87,14 +91,16 @@ def scrape(keyword,filename='data',limit=None):
 
                 with open(filename+'.csv', mode='a') as csv_file:
                     fieldnames = [
-                        'productName', 'priceInDollar', 'rating', 'numberOfRates'
+                        'productName', 'priceInDollar', 'rating', 'numberOfRates','Link'
                     ]
                     writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
                     writer.writerow({
                         'productName': title,
                         'priceInDollar': price,
                         'rating': rating,
-                        'numberOfRates': ratersNB
+                        'numberOfRates': ratersNB,
+                        'Link':'https://www.flipkart.com'+links[index]['href']
+
                     })
 
                     # writerow= csv.writer(csv_file)
