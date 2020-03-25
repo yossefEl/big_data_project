@@ -1,7 +1,6 @@
-# big_data_project
-    #To do
-    \[ ] # '[ ]' Scrapers
-    [-] # '[-]' Classifiers
-    [-] # '[-]' Manager
+# To do
+- [x] Scrapers
+- [ ] Classifiers
+- [ ] Manager
     
     
