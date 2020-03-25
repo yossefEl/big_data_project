@@ -7,10 +7,10 @@
 - [ ] Report
 
 # How to use
-first give the main.py file script the execution permittion
-`$ chmod +x main.py`
-then 
-`./main.py -s 'usb kinston' -o ubsKingston`
+first give the main.py file script the execution permittion<br/>
+`$ chmod +x main.py`<br/>
+then <br/>
+`./main.py -s 'usb kinston' -o ubsKingston`<br/>
 
     
     
